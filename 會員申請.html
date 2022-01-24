@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	
+
+<script type="text/javascript">
+function formresponse() {
+	var m = document.forms["form1"]["account"].value;
+	var d = document.forms["form1"]["phone"].value;
+	
+	if (m==null || m=="")
+	   {
+		alert("account不可為空白!");
+		return false;
+	   }
+	else if (d==null || d=="")
+	   {
+		alert("phone不可為空白!");
+		return false;
+	   }
+	else
+	   {
+		var MySubmit = "https://docs.google.com/forms/d/e/1FAIpQLSeiDJWeBtGaZN6FJDP7A7oOBwLTYz2KGxBbKWCKeyoK5GzOCQ/formResponse?entry.2122324901=" + m + "&entry.879113791=" + d + "&submit=Submit";
+		var NewOpen = window.open(MySubmit);
+	   }
+}
+</script>
+</head>
+<body style="background-color:#FFFFDF;padding:20px">
+  
+  <div class="row">
+    <form class="col s12" name="form1" action="javascript:formresponse();">
+      <div class="row">
+        
+          <i class="material-icons prefix">person_add_alt</i>
+          <input id="icon_prefix" type="text" class="validate" name="account">
+          <label for="icon_prefix">Account Name</label>
+        </div>
+        <div>
+          <i class="material-icons prefix">phone</i>
+          <input id="icon_telephone" type="text" class="validate" name="phone">
+          <label for="icon_telephone">Telephone</label>
+        </div>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</html>
+  

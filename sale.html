@@ -1,0 +1,279 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<!-- 利用Google Visualization讀取Google Sheet https://www.labnol.org/code/google-sheet-d3js-visualization-200608 -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+	
+	<script type="text/javascript">
+	// 取得網址裡的參數 
+		function GetUrlVar(VarName) 
+		{
+		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		  var regexS = "[\\?&]" + VarName + "=([^&#]*)";
+		  var regex = new RegExp(regexS);
+		  var results = regex.exec(window.location.href);
+		  if (results == null)
+		   	 return "";
+		  else
+			 return results[1];
+	}
+
+    // https://developers.google.com/chart/interactive/docs/quick_start
+	// Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.	
+	google.charts.setOnLoadCallback(init);
+
+	function init() {
+	  // 這個例子使用的試算表是 https://docs.google.com/spreadsheets/d/1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk/copy
+	  // 將上述試算表另存副本後，你要在自己的雲端硬碟將該試算表設定成[知道連結的使用者都能查看]。
+	  // 然後讓程式讀取 https://docs.google.com/spreadsheets/d/瀏覽器網址列上的網址擷取序號部分/gviz/tq?sheet=工作表名稱
+	  // 也就是將下列的 1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk 更換成自己的檔案序號，以及最後部分指讀取哪個工作表。
+	  var url ='https://docs.google.com/spreadsheets/d/1mJxaoCdtz1O6cIRuOGbn6JTtVnFFsaWMEAPmSL748-c/edit#gid=1580886724/gviz/tq?sheet=商品名稱';
+	  var query = new google.visualization.Query(url);
+	  query.setQuery('select *');
+	  query.send(processSheetsData);
+	}	
+	
+	function processSheetsData(response) {
+	  var data = response.getDataTable();
+	  var columns = data.getNumberOfColumns();
+	  var rows = data.getNumberOfRows();
+	
+	  //var pname = "";
+	  var X = decodeURIComponent(GetUrlVar('id'));
+	  var i = Number(X);
+	    var shoespic = data.getFormattedValue(i,5);
+		var	pname= data.getFormattedValue(i,4);
+		var productINTRO=data.getFormattedValue(i,6);
+		var price=data.getFormattedValue(i,7);
+		var ppic = ''
+		ppic += '  <div class="col s12 ">'
+		ppic += '  	<div class="card-image">'
+		ppic += '  		<img src="'+ shoespic +'"width="100%" height="100%">'
+		ppic += '  	</div>'
+		ppic += '  </div>'
+		document.getElementById("pname").innerHTML =pname;
+		document.getElementById("demo").innerHTML = ppic
+		document.getElementById("demo1").innerHTML = productINTRO;
+		document.getElementById("demo4").innerHTML = price
+	}		  
+			  
+	
+	</script>	
+	<script type="text/javascript">
+	function formresponse() {
+		var m = document.forms["form1"]["name"].value;
+		var d = document.forms["form1"]["size"].value;
+		var a = document.forms["form1"]["number"].value;
+		if (m==null || m=="")
+		   {
+			alert("商品名稱不可為空白!");
+			return false;
+		   }
+		else if (d==null || d=="")
+		   {
+			alert("尺寸不可為空白!");
+			return false;
+		   }
+		else if (a==null || a=="")
+		   {
+			alert("數量不可為空白!");
+			return false;
+		   }
+		else
+		   {
+			var MySubmit = "https://docs.google.com/forms/d/e/1FAIpQLSd1xKF0ummknsNrSZiO7-5bLnMx9jOIHMewEtIAvOm7MFO55Q/formResponse?entry.563344013=" + m + "&entry.206650796=" + d +"&entry.2071964005="+ a + "&submit=Submit";
+			var NewOpen = window.open(MySubmit);
+		   }
+	}
+</script>
+	<style type="text/css">
+
+	.head{
+		background-color:#ACD6FF;color:white;font-weight:bold;font-size:30px;width:600px;margin:20px auto;
+		text-align:center;padding:10px;border:2px solid;border-color:F1E1FF;font-family:consolas;border-radius:50%;
+	}
+	.content{
+		width = 1320px; margin-left:auto;margin-right:auto
+	}
+	.box{
+		width:500px; padding:10px; margin:10px; background-color:white;
+		display:inline-block; vertical-align:top;
+	}
+	.box1{
+		width:1320px; padding:10px; margin:10px; background-color:white;
+		display:inline-block; vertical-align:top;
+	}
+	.box2{
+		width:1320px; padding:10px; margin:10px; background-color:#003344;
+		display:inline-block; vertical-align:top;
+	}
+	.flex{
+		display:flex;
+		background-color:white;
+		margin:20px;
+		justify-content:space-between;
+		padding:20px;
+		align-content:center;
+	}
+	.wrap{
+		flex-wrap:wrap;
+	}
+	body{
+		margin:10px ;
+		background-color:#ACD6FF;;
+		background-image:url(./img/images (2).jpeg);
+	}
+	</style>
+
+	
+ 
+</head> 
+
+<body> 
+
+
+<div class="flex col s12" style=";margin:20px;margin-bottom;5px;border:5px solid;border-color:#F1E1FF;background-color:#FFFFDF">
+	<div><img src="./img/新商店logo.jpg" width="100px" height="100x" style="border-radius:50%;text-align:left"></div>
+	<div class ="head">
+		trueee.or.false
+	</div>
+	<div><img src="./img/工作區域 1.png" width="100px" height="100px" style="border-radius:50%" ></div>
+</div>	
+<div class="flex col s12 m6">
+	<div id = "demo" style="margin:10px;text-align:left;width:50%;height:50%" >
+	</div>
+
+	<div style="flex-grow:1">
+		<h3 id="pname" style="font-family:consolas;font-weight:bold;text-align:center"></h3>
+		<div id = "demo1" style="padding:10px">
+		</div>
+		<div id="demo4" style="font-size:20px;font-weight:bold">
+		</div>
+		<div class="row" style="padding:30px">
+			<form class="col s12" name="form1" action="javascript:formresponse();">
+			  <div class="row">
+				<div class="inou">
+				  <i class="material-icons prefix">category</i>
+				<label for="icon_prefix">商品名稱</label>
+				  <input id="icon_prefix" type="text" class="validate" name="name">
+				  
+				</div>
+				<div>
+				  <i class="material-icons prefix">local_mall</i>
+				  <label for="icon_telephone">US尺寸</label>
+				  <input id="icon_telephone" type="text" class="validate" name="size">
+				  
+				</div>
+				<div>
+				  <i class="material-icons prefix">dialpad</i>
+				  <label for="icon_telephone">數量</label>
+				  <input id="icon_telephone" type="text" class="validate" name="number">
+				  
+				</div>
+			  <input type="submit" value="Submit">
+			</form>
+		  </div>
+		</div>
+	</div>
+</div>
+	<div class="flex">
+		<div class ='col s12 m4' id = "demo2" >
+		</div>
+		<div style="flex-grow:1;text-align:center;border:2px solid;border-color:#F1E1FF;margin:10px;background-color:">
+				購買說明<br>
+				❗️❗️有關代購需知，請務必看完❗️❗️<br>
+
+1.購買前請先確認尺寸，版型，顏色 版型只能建議 僅供參考，請勿因爲建議後 不是您要的尺寸要求換退貨 請多包涵。<br>
+2.請匯款前在想ㄧ下是否真的需要，匯款完代表訂單以成立，無法在以各種理由說要退款請務必確認好在匯🙏<br>
+3.閱讀完後以上事 完畢代表已經同意以上所有事項，若無法接受，請現在告知，以保障雙方權益，請有不便之處，請多見諒，謝謝您
+		</div>
+	</div>
+
+	<div id = "demo3" style="clear:both">
+
+	</div>
+
+	<script>
+	sales = ["./img/S__152002569.jpg", 
+                    "./img/S__152051729.jpg",
+		    ]
+			  //cars = ["./img/56_工作區域 1.png", 
+                //      "./img/56_工作區域 1.png",
+                  //    "./img/56_工作區域 1.png",
+                    //  "./img/56_工作區域 1.png",
+                      //"./img/56_工作區域 1.png",
+                      //"./img/56_工作區域 1.png"]
+				
+		<!--	  pname=["georgetown",-->	
+		<!--			 "michigan",,-->	
+		<!--			 "pnada",-->	
+		<!--			 "coast",-->	
+		<!--			 "university",-->	
+		<!--			 "pink"-->	
+		<!--			]-->	
+				
+		//	  productINTRO = ['nike dunk low',
+		//			 'nike dunk low',
+		//			 'nike dunk low',
+		//			 'nike dunk low',
+		//				 'nike dunk low',
+		//			 'nike dunk low']
+			
+			
+		 // 要先取得網址裡的路徑起點終點經緯度參數 
+		  //var X = decodeURIComponent(GetUrlVar('id'));
+		 //拿到字串轉成數字 
+		  //var i = Number(X)
+		  
+		  //document.getElementById("demo").innerHTML = "<img src='"+cars[i]+"'height='50%'>"  ;
+		  //document.getElementById("demo1").innerHTML = "<div class='imgL'>'"+productINTRO[i]+"'</div>" ;
+		  
+			
+			
+			<!--document.getElementById("pname").innerHTML = pname[i]-->														
+
+													  
+       
+	</script>
+	
+	<!--footer-->
+	<footer class="page-footer" style ="text-align:center;background-color:#ACD6FF;font-family:consolas;color:white;padding:20px;border-left:2px solid;border-right:2px solid;border-color:white">
+          <div class="container" style="border:2px solid">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text" style="font-family:微軟正黑體;font-weight:bold">真的假的賣場</h5>
+                <p class="grey-text text-lighten-4"><img src=>You can use rows and columns here to organize your footer content.</p>
+				<img src="./img/下載 (2).jpeg" width="50"height="50">
+              </div>
+			  
+              <div class="col l4 offset-l2 s12">
+			  	
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li style="fonttext-align"><a class="grey-text text-lighten-3" href="https://www.instagram.com/trueee.or.false/"><i class="material-icons" style="font-size:15px">storefront</i> instagram</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">shopee</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            </div>
+          </div>
+        </footer>
+
+</body>
+
+</html>

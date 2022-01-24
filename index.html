@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+	<title>Title</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>   
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<style type="text/css">
+	.head{
+		background-color:#ACD6FF;color:white;font-weight:bold;font-size:30px;width:600px;margin:20px auto;
+		text-align:center;padding:10px;border:2px solid;border-color:F1E1FF;font-family:consolas;border-radius:50%;
+	}
+	#Sidebar{
+		　width:120px;
+		　float:left;
+		　height:280px;
+		　text-align:center;
+		　line-height:280px;
+		　font-size:15px;
+		　color:#ffffff;
+		　font-weight:bold;
+		　background-color:#cecece;
+		}
+	body{
+		　text-align:center;
+		　line-height:280px;
+		　font-size:15px;
+		　color:#f9c81e;
+		　font-weight:bold;
+		　background-color:#FFF8D7;
+		　float:left;
+		}
+	/*相鄰選擇器*/
+	section+section{
+		margin-top:50px;
+	}
+	#content{
+		background-color:white
+		
+	}
+	header+main{
+		margin-top:30px
+	}
+	.flex{
+		display:flex;
+		background-color:white;
+		margin:20px;
+		justify-content:space-between;
+		padding:20px;
+		align-content:center;
+	}
+	li{
+		color:white;
+		border-radius:50%;
+		padding:10px;
+		padding-bottom:2px;
+	}
+	li:hover{ 
+		background-color:#E0E0E0;
+		
+	}
+	</style>
+
+	
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    
+
+	</head>
+	
+	
+	
+	
+    <body style="margin:10px;background-color:#FFF8D7;">
+    <header id="top" style="background-color:#D2E9FF;color:white;font-weight:bold;width:100%;margin-left:auto;margin-right:auto;
+		text-align:center;padding:10px;border:2px solid;border-color:F1E1FF;font-family:consolas;height:140px" class="flex col s12">
+		
+	<section style="text-align:center;margin:auto">
+			<div class="nav-wrapper flex col s12 " style="background-color:#ACD6FF;color:white;height:120px;border:2px solid;border-color:white">
+			  <div><img src="./img/新商店logo.jpg" width="100px" height="100px" style="border-radius:50%;text-align:left"></div>
+			  <div class="col s12 flex" style="background-color:#ACD6FF;color:white;border:2px solid;borer-color:white;height:100px;width:300px">
+				<div class="item" style="margin-right:20px;"><a href="./products.html">All Products</a></div>
+				<div class="item" style="margin-right:20px;"><a href="./關於我們.html" target="_blank">About us</a></div>
+				<div class="item" style="margin-right:20px;"><a href="./會員申請.html" target="_blank"><i class="material-icons prefix">person_add_alt</i></a></div> 
+			  </div>
+			  <div><img src="./img/工作區域 1.png" width="100px" height="100px" style="border-radius:50%" ></div>
+			</div>
+	</section>		
+
+	</header>
+	
+	
+	<main id="content">
+
+		<section>
+			<div id ="demo" class="item">
+				
+			</div>
+		</section>
+		
+
+		<section>
+			<div style="text-align:center;font-family:consolas;margin:20px;padding:15px;" id="newArrivals">
+				<h6>new arrival</h6><br>
+			</div>
+			<div class="item" id ="demo1" style="text-align:center;font-family:consolas;margin:10px">
+			</div>
+				
+		</section>
+		
+		<section style="padding:20px;background-color:#FFFFF4">
+			<div style="text-align:center;font-family:consolas;margin:20px;padding:15px;margin-top:20px">
+				<h6>sales</h6>
+			</div>
+			<div class="item" id="sales" style="text-align:center;font-family:consolas;margin:20px">
+			</div>
+		
+		</section>
+	</main>
+	
+      <script>
+        
+            
+           pics = ["./img/56_工作區域 1.png", 
+                          "./img/工作區域 1 複本 4.png",
+                          "./img/工作區域 1 複本 2.png",
+                          "./img/工作區域 1 複本 3.png",
+                          "./img/S__152002570.jpg",
+                          "./img/S__152002567.jpg"];
+           sales = ["./img/S__152002569.jpg", 
+                    "./img/S__152051729.jpg",
+		   
+		   
+		   
+		   
+		   ]
+
+  
+          
+          let text1 = ''
+          for(let a = 0; a < pics.length ; a++){
+            text1 += '<div class="row">';
+            text1 += '  <div class="col s12 m4">'
+            text1 += '      <div class="card-content white-text">';
+            text1 += '      </div>'            
+            text1 += '      <div class="card-image">'
+            text1 += '          <a href="c.html?id='+ a +'" target = _blank><img src="'+ pics[a] +'"width="80%" height="80%"></a>'
+            text1 += '      </div>'
+            text1 += '      <div class="card-content">';
+            text1 += '      </div>';
+            text1 += '    <div class="card-action">';
+            text1 += '    </div>';
+            text1 += '</div>';
+			
+          }
+          let text = ''
+          for(let i = 0; i < sales.length ; i++){
+            text += '<div class="row">';
+            text += '  <div class="col s12 m6">'
+            text += '      <div class="card-content white-text">';
+            text += '      </div>'            
+            text += '      <div class="card-image">'
+            text += '          <a href="sale.html?id='+ i +'" target = _blank><img src="'+ sales[i] +'"width="80%" height="80%"></a>'
+            text += '      </div>'
+            text += '      <div class="card-content">';
+            text += '      </div>';
+            text += '    <div class="card-action">';
+            text += '    </div>';
+            text += '</div>';
+			
+          }
+          document.getElementById("demo1").innerHTML = text1;
+		  document.getElementById("sales").innerHTML = text;
+        
+        
+      </script>
+	  <script>
+		$(".dropdown-trigger").dropdown();
+	  </script>
+	  <nav>
+		<div class="nav-wrapper" style ="text-align:center;background-color:#ACD6FF;font-family:微軟正黑體;color:white;padding:20px;font-weight:bold;border-top:2px solid;border-color:white;border-left:2px solid;border-right:2px solid">
+		  <div class="col s12">
+			<a href="#newArrivals" class="breadcrumb" style="color:white">back to new arrival</a>
+			<a href="#sales" class="breadcrumb" style="color:white">sale</a>
+			<a href="#top" class="breadcrumb">back to top</a>
+		  </div>
+		</div>
+	  </nav>
+	  
+      <footer class="page-footer" style ="text-align:center;background-color:#ACD6FF;font-family:consolas;color:white;padding:20px;border-bottom:2px solid;border-color:white;border-left:2px solid;border-right:2px solid">
+          <div class="container">
+            <div class="row" style="border:2px solid;border-color:white">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Linh</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/trueee.or.false/" target="_blank">instagram</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/trueee.or.false/">shopee</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="./admin.html" target="_blank">管理員</a>
+            </div>
+          </div>
+        </footer>
+		
+    
+
+    </body>
+  </html>

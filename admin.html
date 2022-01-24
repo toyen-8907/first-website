@@ -1,0 +1,145 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- 利用Google Visualization讀取Google Sheet https://www.labnol.org/code/google-sheet-d3js-visualization-200608 -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+	// https://developers.google.com/chart/interactive/docs/quick_start
+	// Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.	
+	google.charts.setOnLoadCallback(init);
+
+	function init() {
+	  // 這個例子使用的試算表是 https://docs.google.com/spreadsheets/d/1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk/copy
+	  // 將上述試算表另存副本後，你要在自己的雲端硬碟將該試算表設定成[知道連結的使用者都能查看]。
+	  // 然後讓程式讀取 https://docs.google.com/spreadsheets/d/瀏覽器網址列上的網址擷取序號部分/gviz/tq?sheet=工作表名稱
+	  // 也就是將下列的 1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk 更換成自己的檔案序號，以及最後部分指讀取哪個工作表。
+	  var url ='https://docs.google.com/spreadsheets/d/1Cy49f3ZQIa1Xuzk9uqm6pIVcCiHo5NxFMcbZoHNIc_w/edit?resourcekey#gid=343637910/gviz/tq?sheet=工作表1';
+	  var query = new google.visualization.Query(url);
+	  query.setQuery('select *');
+	  query.send(processSheetsData);
+	}	
+	
+	function processSheetsData(response) {
+	  var data = response.getDataTable();
+	  var columns = data.getNumberOfColumns();
+	  var rows = data.getNumberOfRows();
+	
+	var str = "";
+	  for (var r=0 ; r<rows ; r++) {
+		  str += "訂單" + (r+1) + " (於" +  data.getFormattedValue(r,0) + "完成)" + " 訂 " +  data.getFormattedValue(r,1) + " 產品 " + data.getFormattedValue(r,2) + "尺寸"+ data.getFormattedValue(r,3) +"雙 <br>";
+	  }
+	  document.getElementById("demo").innerHTML = str;
+	}
+				  
+	
+	
+</script>
+	<script>
+	var xmlhttp = new XMLHttpRequest();
+	var url = "https://emma.pixnet.cc/mainpage/blog/categories/hot/16?page=1&per_page=16&api_version=2&format=json";
+
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var myArr = JSON.parse(xmlhttp.responseText);
+			myFunction(myArr);
+		}
+	}
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+
+	function myFunction(arr) {
+		var data = arr.articles;
+		var out = "";
+		var i;
+		for (i = 0; i < data.length; i++) {
+			if ( data[i].thumb != "" ) out += '<img src="' + data[i].thumb + '" />';
+			if ( data[i].title != "" ) out += '<p><a href="' + data[i].link + '" target="_blank">' + data[i].title + '</a></p>';
+			out += '<p> </p>';
+			if ( data[i].tags.length != 0 )
+			   {
+				out += '<p>Tags: ';
+				for (j = 0; j < data[i].tags.length; j++) {
+					out += data[i].tags[j].tag + ', ';
+				}
+				out += '</p>';
+			   }
+			out += '<br /><br /><br />';
+		}
+		document.getElementById("pixnet-stuff").innerHTML = out;
+	}
+	</script>
+	<style type="text/css">
+
+	.head{
+		background-color:#ACD6FF;color:white;font-weight:bold;font-size:30px;width:500px;margin:20px auto;
+		text-align:center;padding:10px;border:6px solid;border-color:F1E1FF;font-family:consolas;border-radius:50%;
+	}
+	.content{
+		width = 1320px; margin-left:auto;margin-right:auto
+	}
+	.box{
+		width:500px; padding:10px; margin:10px; background-color:white;
+		display:inline-block; vertical-align:top;
+	}
+	.box1{
+		width:1320px; padding:10px; margin:10px; background-color:white;
+		display:inline-block; vertical-align:top;
+	}
+	.box2{
+		width:1320px; padding:10px; margin:10px; background-color:#003344;
+		display:inline-block; vertical-align:top;
+	}
+	.flex{
+		display:flex;
+		background-color:white;
+		margin:20px;
+		justify-content:space-between;
+		padding:20px;
+		align-content:center;
+	}
+	.wrap{
+		flex-wrap:wrap;
+	}
+	body{
+		margin:10px ;
+		background-color:#ACD6FF;;
+		background-image:url(./img/images (2).jpeg);
+	}
+	</style>
+</head>
+
+<body style="background-color:#ACD6FF;padding:20px">
+<div class="flex col s12 m6" style=";margin:20px;margin-bottom;5px;border:5px solid;border-color:#F1E1FF;background-color:#FFFFDF;">
+	<div><img src="./img/新商店logo.jpg" width="100px" height="100x" style="border-radius:50%;text-align:left"></div>
+	<div class ="head">
+		trueee.or.false
+	</div>
+	<div><img src="./img/工作區域 1.png" width="100px" height="100px" style="border-radius:50%" ></div>
+</div>	
+<div style="background-color:#FFFFDF;font-family:微軟正黑體;font-weight:bold;border:20px solid;border-color:#ECF5FF;width:1000px;margin:auto;text-align:center">
+	<h5>訂單管理</h5>
+	<div id="demo" style="text-align:center;background-color:white;margin:auto;padding:20px">
+
+	</div>
+</div>	
+<div style="text-align:center;width:1000px;background-color:white;margin:auto;padding:20px;font-family:微軟正黑體;font-weight:bold;border:20px solid;border-color:#ECF5FF;margin-top:50px">
+	<h5>視覺設計</h5>
+	<div id="pixnet-stuff">
+	</div>
+</div>
+</body>
+</html>
+  

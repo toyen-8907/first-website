@@ -1,0 +1,172 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+			<!-- 利用Google Visualization讀取Google Sheet https://www.labnol.org/code/google-sheet-d3js-visualization-200608 -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+	
+	<script type="text/javascript">
+
+
+    // https://developers.google.com/chart/interactive/docs/quick_start
+	// Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.	
+	google.charts.setOnLoadCallback(init);
+
+	function init() {
+	  // 這個例子使用的試算表是 https://docs.google.com/spreadsheets/d/1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk/copy
+	  // 將上述試算表另存副本後，你要在自己的雲端硬碟將該試算表設定成[知道連結的使用者都能查看]。
+	  // 然後讓程式讀取 https://docs.google.com/spreadsheets/d/瀏覽器網址列上的網址擷取序號部分/gviz/tq?sheet=工作表名稱
+	  // 也就是將下列的 1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk 更換成自己的檔案序號，以及最後部分指讀取哪個工作表。
+	  var url ='https://docs.google.com/spreadsheets/d/1mJxaoCdtz1O6cIRuOGbn6JTtVnFFsaWMEAPmSL748-c/edit#gid=1580886724/gviz/tq?sheet=商品名稱';
+	  var query = new google.visualization.Query(url);
+	  query.setQuery('select *');
+	  query.send(processSheetsData);
+	}	
+	
+	function processSheetsData(response) {
+	  var data = response.getDataTable();
+	  var columns = data.getNumberOfColumns();
+	  var rows = data.getNumberOfRows();
+	
+	  //var pname = "";
+
+/*
+		for(var a=0;a<rows;a++){
+		var shoespic = data.getFormattedValue(a,9);
+		var ppic = ''
+		ppic += '  <div class="col s12 m6">'
+		ppic += '  	<div class="card-image">'
+		ppic += '  		<img src="'+ shoespic +'"width="100%" height="100%">'
+		ppic += '  	</div>'
+		ppic += '  </div>'
+
+		document.getElementById("demo").innerHTML = ppic
+		}
+*/
+          var text1 = ''
+          for(var a = 0; a < rows ; a++){
+
+            text1 += '<div class="row">';
+            text1 += '  <div class="col s12 m4">'
+            text1 += '      <div class="card-content white-text">';
+            text1 += '      </div>'            
+            text1 += '      <div class="card-image">'
+            text1 += '          <a href="all.html?id='+ a +'" target = _blank><img src="'+ data.getFormattedValue(a,9) +'"width="80%" height="80%"></a>'
+            text1 += '      </div>'
+
+            text1 += '</div>';
+			
+          }
+	document.getElementById("demo").innerHTML =text1
+	}			  
+
+
+</script>
+<style type="text/css">
+	.head{
+		background-color:#ACD6FF;color:white;font-weight:bold;font-size:30px;width:500px;margin:20px auto;
+		text-align:center;padding:10px;border:6px solid;border-color:F1E1FF;font-family:consolas;border-radius:50%;
+	}
+	.content{
+		width = 1320px; margin-left:auto;margin-right:auto
+	}
+	.box{
+		width:500px; padding:10px; margin:10px; background-color:white;
+		display:inline-block; vertical-align:top;
+	}
+	.box1{
+		width:1320px; padding:10px; margin:10px; background-color:white;
+		display:inline-block; vertical-align:top;
+	}
+	.box2{
+		width:1320px; padding:10px; margin:10px; background-color:#003344;
+		display:inline-block; vertical-align:top;
+	}
+	.flex{
+		display:flex;
+		background-color:white;
+		margin:20px;
+		justify-content:space-between;
+		padding:20px;
+		align-content:center;
+	}
+	.wrap{
+		flex-wrap:wrap;
+	}
+	body{
+		margin:10px ;
+		background-color:#ACD6FF;;
+		background-image:url(./img/images (2).jpeg);
+	}
+</style>
+</head>
+
+
+
+<body style="background-color:#FFFFDF;padding:20px">
+<header id="top" style="background-color:#D2E9FF;color:white;font-weight:bold;width:100%;margin-left:auto;margin-right:auto;
+		text-align:center;padding:10px;border:2px solid;border-color:F1E1FF;font-family:consolas;height:140px" class="flex col s12">
+		
+	<section style="text-align:center;margin:auto">
+			<div class="nav-wrapper flex col s12 " style="background-color:#ACD6FF;color:white;height:120px;border:2px solid;border-color:white">
+			  <div><img src="./img/新商店logo.jpg" width="100px" height="100px" style="border-radius:50%;text-align:left"></div>
+			  <div class="col s12 flex" style="background-color:#ACD6FF;color:white;border:2px solid;borer-color:white;height:100px;width:300px">
+				<div class="item" style="margin-right:20px;"><a href="./index.html">index</a></div>
+				<div class="item" style="margin-right:20px;"><a href="./關於我們.html" target="_blank">About us</a></div>
+				<div class="item" style="margin-right:20px;"><a href="./會員申請.html" target="_blank"><i class="material-icons prefix">person_add_alt</i></a></div> 
+			  </div>
+			  <div><img src="./img/工作區域 1.png" width="100px" height="100px" style="border-radius:50%" ></div>
+			</div>
+	</section>		
+
+	</header>
+	
+
+
+<div class="item" id ="demo" style="text-align:center;font-family:consolas;margin:10px;margin-top:50px;background-color:white;padding:20px">
+</div>
+
+
+
+
+
+
+
+
+
+      <footer class="page-footer" style ="text-align:center;background-color:#ACD6FF;font-family:consolas;color:white;padding:20px;border-bottom:2px solid;border-color:white;border-left:2px solid;border-right:2px solid">
+          <div class="container">
+            <div class="row" style="border:2px solid;border-color:white">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/trueee.or.false/" target="_blank">instagram</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/trueee.or.false/">shopee</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="./admin.html">管理員</a>
+            </div>
+          </div>
+        </footer>
+</html>
